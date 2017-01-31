@@ -5,7 +5,12 @@ namespace CRTX\Curl;
 class MultiCurl extends AbstractCurl
 {
     protected $multiCurlHandle;
-    protected $curlCollection = array();
+    protected $curlCollection;
+
+    public function __construct(Array $curlCollection)
+    {
+        $this->curlCollection = $curlCollection;
+    }
 
     public function add(Curl $Curl)
     {
