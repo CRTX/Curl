@@ -28,9 +28,7 @@ class MultiCurlTest extends PHPUnit_Framework_TestCase
             );
         }
 
-        $MultiCurlFactory = new MultiCurlFactory();
-
-        $MultiCurl = $MultiCurlFactory->build('MultiCurl', $curlList);
+        $MultiCurl = $CurlFactory->build('MultiCurl', array($curlList));
 
         $result = $MultiCurl->execute();
 
