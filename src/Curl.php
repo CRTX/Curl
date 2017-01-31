@@ -13,7 +13,7 @@ class Curl extends AbstractCurl
         $this->optionList = $optionList;
     }
 
-    public function execute(array $optionList = array())
+    public function execute()
     {
         $this->setOptions($this);
         return curl_exec($this->curlHandle);
