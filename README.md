@@ -1,7 +1,11 @@
-# Curl
-Simple Curl and Multicurl PHP OOP Wrapper
+The main purpose of this cURL wrapper is to be able to mock cURL calls in php unit tests.
+
+It is cumbersome to mock native php ```curl_*``` functions to replace in unit tests.
+
+Having objects instead of native functions makes life easier when unit testing.
 
 #Usage
+
 
 ##Curl
 
