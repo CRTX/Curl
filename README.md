@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/CRTX/Curl.svg?branch=master)](https://travis-ci.org/CRTX/Curl)
+
 The main purpose of this cURL wrapper is to be able to mock cURL calls in php unit tests.
 
 It is cumbersome to mock native php ```curl_*``` functions to replace in unit tests.
