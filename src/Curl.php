@@ -10,23 +10,17 @@ class Curl extends AbstractCurl
     public function __construct(String $url, Array $optionList = array())
     {
         $this->curlHandle = curl_init($url);
-        $this->optionList = $optionList;
+        $this->setOptions($optionList);
     }
 
     public function execute()
     {
-        $this->setOptions();
         return curl_exec($this->curlHandle);
     }
 
     public function getCurlHandle()
     {
         return $this->curlHandle;
-    }
-
-    public function getOptionList()
-    {
-        return $this->optionList;
     }
 
     public function __destruct()
@@ -36,9 +30,9 @@ class Curl extends AbstractCurl
         }
     }
 
-    public function setOptions()
+    protected function setOptions(Array $optionList)
     {
-        foreach($this->optionList as $optionName => $optionValue) {
+        foreach($optionList as $optionName => $optionValue) {
             curl_setopt($this->curlHandle, $optionName, $optionValue);
         }
     }
