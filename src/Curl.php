@@ -15,7 +15,7 @@ class Curl extends AbstractCurl
 
     public function execute()
     {
-        $this->setOptions($this);
+        $this->setOptions();
         return curl_exec($this->curlHandle);
     }
 
@@ -33,6 +33,13 @@ class Curl extends AbstractCurl
     {
         if(is_resource($this->curlHandle)) {
             curl_close($this->curlHandle);
+        }
+    }
+
+    public function setOptions()
+    {
+        foreach($this->optionList as $optionName => $optionValue) {
+            curl_setopt($this->curlHandle, $optionName, $optionValue);
         }
     }
 }

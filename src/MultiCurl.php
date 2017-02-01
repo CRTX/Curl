@@ -41,7 +41,7 @@ class MultiCurl extends AbstractCurl
                 $this->multiCurlHandle,
                 $Curl->getCurlHandle()
             );
-            $this->setOptions($Curl);
+            $Curl->setOptions();
         }
     }
 
