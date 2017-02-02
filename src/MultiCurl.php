@@ -2,26 +2,21 @@
 
 namespace CRTX\Curl;
 
-class MultiCurl extends AbstractCurl
+class MultiCurl implements CurlInterface
 {
     protected $multiCurlHandle;
-    protected $curlCollection;
+    protected $parameterBagList;
 
-    public function __construct(Array $curlCollection)
+    public function __construct(Array $parameterBagList)
     {
-        $this->curlCollection = $curlCollection;
-    }
-
-    public function add(Curl $Curl)
-    {
-        array_push($this->curlCollection, $Curl);
+        $this->parameterBagList = $parameterBagList;
     }
 
     public function execute(array $optionList = array())
     {
         $this->multiCurlHandle = curl_multi_init();
 
-        $this->addHandleList($this->curlCollection);
+        $this->addHandleList($this->parameterBagList);
 
         $running = null;
 
@@ -29,27 +24,27 @@ class MultiCurl extends AbstractCurl
             curl_multi_exec($this->multiCurlHandle, $running);
         } while ($running);
 
-        $this->removeHandleList($this->curlCollection);
+        $this->removeHandleList($this->parameterBagList);
 
-        return $this->getResultList($this->curlCollection);
+        return $this->getResultList($this->parameterBagList);
     }
 
-    protected function addHandleList(Array $curlCollection = array())
+    protected function addHandleList(Array $parameterBagList)
     {
-        foreach($curlCollection as $Curl) {
+        foreach($this->parameterBagList as $ParameterBag) {
             curl_multi_add_handle(
                 $this->multiCurlHandle,
-                $Curl->getCurlHandle()
+                $ParameterBag->get('curlhandle')
             );
         }
     }
 
     protected function removeHandleList(Array $curlCollection = array())
     {
-        foreach($curlCollection as $Curl) {
+        foreach($this->parameterBagList as $ParameterBag) {
             curl_multi_remove_handle(
                 $this->multiCurlHandle,
-                $Curl->getCurlHandle()
+                $ParameterBag->get('curlhandle')
             );
         }
     }
@@ -57,9 +52,14 @@ class MultiCurl extends AbstractCurl
     protected function getResultList(array & $curlCollection = array())
     {
         $resultList = array();
-        foreach($curlCollection as $Curl) {
-            array_push($resultList, curl_multi_getcontent($Curl->getCurlHandle()));
+
+        foreach($this->parameterBagList as $ParameterBag) {
+            array_push(
+                $resultList,
+                curl_multi_getcontent($ParameterBag->get('curlhandle'))
+            );
         }
+
         return $resultList;
     }
 

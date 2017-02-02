@@ -2,14 +2,14 @@
 
 namespace CRTX\Curl;
 
-class Curl extends AbstractCurl
+class Curl implements CurlInterface
 {
     protected $curlHandle;
     protected $optionList;
 
-    public function __construct(String $url, Array $optionList = array())
+    public function __construct($curlHandle, Array $optionList = array())
     {
-        $this->curlHandle = curl_init($url);
+        $this->curlHandle = $curlHandle;
         $this->setOptions($optionList);
     }
 
@@ -18,22 +18,17 @@ class Curl extends AbstractCurl
         return curl_exec($this->curlHandle);
     }
 
-    public function getCurlHandle()
+    protected function setOptions(Array $optionList)
     {
-        return $this->curlHandle;
+        foreach($optionList as $optionName => $optionValue) {
+            curl_setopt($this->curlHandle, $optionName, $optionValue);
+        }
     }
 
     public function __destruct()
     {
         if(is_resource($this->curlHandle)) {
             curl_close($this->curlHandle);
-        }
-    }
-
-    protected function setOptions(Array $optionList)
-    {
-        foreach($optionList as $optionName => $optionValue) {
-            curl_setopt($this->curlHandle, $optionName, $optionValue);
         }
     }
 }

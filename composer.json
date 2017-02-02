@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "CRTX/AbstractFactory": "dev-master"
+        "CRTX/AbstractFactory": "dev-master",
+        "symfony/dependency-injection": "^3.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",

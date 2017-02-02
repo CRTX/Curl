@@ -1,44 +1,38 @@
 <?php
 
-use CRTX\Curl\Curl;
-use CRTX\Curl\CurlFactory;
-use CRTX\Curl\MultiCurl;
 use CRTX\Curl\MultiCurlFactory;
 
 class MultiCurlTest extends PHPUnit_Framework_TestCase
 {
     public function testMultiCurl()
     {
-        $urlList = array(
-            'http://localhost?testvar=test1',
-            'http://localhost?testvar=test2'
+        $option = array(CURLOPT_RETURNTRANSFER => true);
+
+        $parameterList = array(
+            array(
+                'url' => 'http://localhost?testvar=test1',
+                'optionList' => $option
+            ),
+            array(
+                'url' => 'http://localhost?testvar=test2',
+                'optionList' => $option
+            )
         );
 
-        $curlList = array();
+        $MultiCurlFactory = new MultiCurlFactory();
 
-        $CurlFactory = new CurlFactory();
-
-        foreach($urlList as $url) {
-            array_push($curlList, $CurlFactory->build('Curl',
-                    array(
-                        $url,
-                        array(CURLOPT_RETURNTRANSFER => true)
-                    )
-                )
-            );
-        }
-
-        $MultiCurl = $CurlFactory->build('MultiCurl', array($curlList));
-
-        $result = $MultiCurl->execute();
-
-        $testArray = array(
-            'test1', 'test2'
+        $MultiCurl = $MultiCurlFactory->build(
+            'MultiCurl',
+            $parameterList
         );
+
+        $actual = $MultiCurl->execute();
+
+        $expected = array('test1', 'test2');
 
         $this->assertEquals(
-            $testArray,
-            $result,
+            $expected,
+            $actual,
             "\$canonicalize = true",
             $delta = 0.0,
             $maxDepth = 10,
