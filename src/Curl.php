@@ -2,6 +2,8 @@
 
 namespace CRTX\Curl;
 
+use InvalidArgumentException;
+
 class Curl implements CurlInterface
 {
     protected $curlHandle;
@@ -13,15 +15,36 @@ class Curl implements CurlInterface
         $this->setOptions($optionList);
     }
 
-    public function execute()
+    public function execute() : String
     {
-        return curl_exec($this->curlHandle);
+        $this->resourceCheck($this->curlHandle);
+        $result = curl_exec($this->curlHandle);
+
+        if(!is_string($result)) {
+            return '';
+        }
+
+        return $result;
     }
 
-    protected function setOptions(Array $optionList)
+    public function getError() : String
+    {
+        $errorNumber = curl_errno($this->curlHandle);
+        $message = curl_error($this->curlHandle);
+        return "cURL error $errorNumber: " . PHP_EOL . $message;
+    }
+
+    protected function setOptions(Array $optionList) : void
     {
         foreach($optionList as $optionName => $optionValue) {
             curl_setopt($this->curlHandle, $optionName, $optionValue);
+        }
+    }
+
+    protected function resourceCheck($value) : void
+    {
+        if (!is_resource($value)) {
+            throw new InvalidArgumentException('Object Curl expects a curl_init(). Incorrect argument provided.');
         }
     }
 

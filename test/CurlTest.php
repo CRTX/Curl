@@ -1,6 +1,6 @@
 <?php
 
-use CRTX\Curl\CurlFactory;
+use CRTX\Curl\Curl;
 
 class CurlTest extends PHPUnit_Framework_TestCase
 {
@@ -9,10 +9,27 @@ class CurlTest extends PHPUnit_Framework_TestCase
         $optionList = array(
             CURLOPT_RETURNTRANSFER => true
         );
-        $url = 'http://localhost?testvar=test';
-        $CurlFactory = new CurlFactory();
-        $Curl = $CurlFactory->build('Curl', array($url, $optionList));
+        $curlHandle = curl_init('http://localhost?testvar=test');
+        $Curl = new Curl($curlHandle, $optionList);
         $actual = $Curl->execute();
         $this->assertEquals('test', $actual);
+    }
+
+    public function testCurlError()
+    {
+        $optionList = array(
+            CURLOPT_RETURNTRANSFER => true
+        );
+        $curlHandle = curl_init('http://invalidHost');
+        $Curl = new Curl($curlHandle, $optionList);
+        $actual = $Curl->execute();
+        $this->assertTrue(!empty($Curl->getError()));
+    }
+    
+    public function testInvalidCurlHandle()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $Curl = new Curl(null, []);
+        $Curl->execute();
     }
 }

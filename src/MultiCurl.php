@@ -12,7 +12,7 @@ class MultiCurl implements CurlInterface
         $this->parameterBagList = $parameterBagList;
     }
 
-    public function execute(array $optionList = array())
+    public function execute(array $optionList = array()) : Array
     {
         $this->multiCurlHandle = curl_multi_init();
 
