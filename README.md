@@ -32,7 +32,7 @@ To use all the features, you may use the ```$curlHandle``` to manipulate it befo
 
 Calling ```new Curl($curlHandle,...``` alone will close the curl resource for you automatically when the object is destroyed by PHP's garbage collector.
 
-Even when you call ```curl_init``` outside the class just like the code above the Curl object will take care of closing ```curl_init``` for you.
+Even when you call ```curl_init``` outside the class just like the code above, the Curl object will take care of closing ```curl_init``` for you.
 
 ##Curl Factory
 
