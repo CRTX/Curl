@@ -50,6 +50,7 @@ $curlHandle = curl_init('http://localhost?testvar=test');
 $CurlFactory = new CurlFactory();
 $Curl = $CurlFactory->build('Curl', array($curlHandle, $optionList));
 $result = $Curl->execute();
+```
 
 ##MultiCurl
 
