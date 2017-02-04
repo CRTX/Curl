@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/CRTX/Curl.svg?branch=master)](https://travis-ci.org/CRTX/Curl)
+[![GitHub release](https://img.shields.io/github/release/CRTX/Curl.svg)]()
 
 The main purpose of this cURL wrapper is to be able to mock cURL calls in php unit tests.
 
