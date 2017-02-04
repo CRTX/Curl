@@ -5,6 +5,11 @@
             "CRTX\\Curl\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "CRTX\\Curl\\Test\\": "test/"
+        }
+    },
     "repositories": [
         {
             "type": "git",

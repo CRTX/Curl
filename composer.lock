@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "68aa00db2f83da20131281443d65cfd2",
+    "hash": "d5d5f7864127913a7210de33443ca25e",
     "content-hash": "18a0d42ace09c89090c4a7f3adf4314b",
     "packages": [
         {
@@ -13,7 +13,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CRTX/AbstractFactory.git",
-                "reference": "4b253d06a3ffec50f8b6dac946d1d805ced41075"
+                "reference": "26cf3c7765fbb4bd74b30892945f7affd11d00f3"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -35,7 +35,7 @@
                 "Abstract",
                 "Factory"
             ],
-            "time": "2016-09-14 04:18:58"
+            "time": "2017-02-04 08:44:41"
         },
         {
             "name": "symfony/dependency-injection",

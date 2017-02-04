@@ -7,9 +7,9 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class MultiCurlFactory extends AbstractFactory
 {
-    public function build($string, array $arguments = array())
+    public function build($className, array $arguments = array())
     {
-        $this->ReflectedClass = new \ReflectionClass($this->namespace . "\\" . $string);
+        $ReflectedClass = $this->getClassReflection($className);
 
         $parameterBagList = array();
 
@@ -25,9 +25,6 @@ class MultiCurlFactory extends AbstractFactory
             array_push($parameterBagList, new ParameterBag($parameterList));
         }
 
-        return $this->ReflectedClass->newInstanceArgs(array(
-                $parameterBagList
-            )
-        );
+        return $ReflectedClass->newInstance($parameterBagList);
     }
 }

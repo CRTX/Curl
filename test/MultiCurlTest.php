@@ -1,6 +1,9 @@
 <?php
 
+namespace CRTX\Curl\Test;
+
 use CRTX\Curl\MultiCurlFactory;
+use PHPUnit_Framework_TestCase;
 
 class MultiCurlTest extends PHPUnit_Framework_TestCase
 {
