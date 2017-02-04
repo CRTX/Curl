@@ -34,6 +34,23 @@ Calling ```new Curl``` along with ```$Curl->execute()``` will close the curl res
 
 Even when you call ```curl_init``` outside the class just like the code above the Curl object will take care of closing ```curl_init``` for you.
 
+##Curl Factory
+
+If you like unit testing as much as I do I recommend you use the Curl Factory instead.
+
+```php
+use CRTX\Curl\CurlFactory;
+
+$optionList = array(
+    CURLOPT_RETURNTRANSFER => true
+);
+
+$curlHandle = curl_init('http://localhost?testvar=test');
+
+$CurlFactory = new CurlFactory();
+$Curl = $CurlFactory->build('Curl', array($curlHandle, $optionList));
+$result = $Curl->execute();
+
 ##MultiCurl
 
 ```php
