@@ -30,7 +30,7 @@ Note that this library doesn't yet support the full features of ```curl_*``` fun
 
 To use all the features, you may use the ```$curlHandle``` to manipulate it before calling ````new Curl($curlHandle, ...```
 
-Calling ```new Curl``` last along with ```$Curl->execute()``` will close the curl resource for you automatically.
+Calling ```new Curl``` along with ```$Curl->execute()``` will close the curl resource for you automatically.
 
 Even when you call ```curl_init``` outside the class just like the code above the Curl object will take care of closing ```curl_init``` for you.
 
