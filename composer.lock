@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c1c1b557f8b861928a2d978f97aa8108",
-    "content-hash": "027df0a8c26ecea657ec15acfa74747a",
+    "hash": "d5d5f7864127913a7210de33443ca25e",
+    "content-hash": "18a0d42ace09c89090c4a7f3adf4314b",
     "packages": [
         {
             "name": "CRTX/AbstractFactory",
@@ -13,7 +13,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CRTX/AbstractFactory.git",
-                "reference": "4b253d06a3ffec50f8b6dac946d1d805ced41075"
+                "reference": "26cf3c7765fbb4bd74b30892945f7affd11d00f3"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -35,7 +35,70 @@
                 "Abstract",
                 "Factory"
             ],
-            "time": "2016-09-14 04:18:58"
+            "time": "2017-02-04 08:44:41"
+        },
+        {
+            "name": "symfony/dependency-injection",
+            "version": "v3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dependency-injection.git",
+                "reference": "22b2c97cffc6a612db82084f9e7823b095958751"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/22b2c97cffc6a612db82084f9e7823b095958751",
+                "reference": "22b2c97cffc6a612db82084f9e7823b095958751",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "conflict": {
+                "symfony/yaml": "<3.2"
+            },
+            "require-dev": {
+                "symfony/config": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/yaml": "~3.2"
+            },
+            "suggest": {
+                "symfony/config": "",
+                "symfony/expression-language": "For using expressions in service container configuration",
+                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DependencyInjection\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DependencyInjection Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-01-10 14:21:25"
         }
     ],
     "packages-dev": [

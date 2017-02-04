@@ -2,38 +2,56 @@
 
 namespace CRTX\Curl;
 
-class Curl extends AbstractCurl
+use InvalidArgumentException;
+
+class Curl implements CurlInterface
 {
     protected $curlHandle;
     protected $optionList;
 
-    public function __construct(String $url, Array $optionList = array())
+    public function __construct($curlHandle, Array $optionList = array())
     {
-        $this->curlHandle = curl_init($url);
+        $this->curlHandle = $curlHandle;
         $this->setOptions($optionList);
     }
 
-    public function execute()
+    public function execute() : String
     {
-        return curl_exec($this->curlHandle);
+        $this->resourceCheck($this->curlHandle);
+        $result = curl_exec($this->curlHandle);
+
+        if(!is_string($result)) {
+            return '';
+        }
+
+        return $result;
     }
 
-    public function getCurlHandle()
+    public function getError() : String
     {
-        return $this->curlHandle;
+        $errorNumber = curl_errno($this->curlHandle);
+        $message = curl_error($this->curlHandle);
+        return "cURL error $errorNumber: " . PHP_EOL . $message;
+    }
+
+    protected function setOptions(Array $optionList) : void
+    {
+        foreach($optionList as $optionName => $optionValue) {
+            curl_setopt($this->curlHandle, $optionName, $optionValue);
+        }
+    }
+
+    protected function resourceCheck($value) : void
+    {
+        if (!is_resource($value)) {
+            throw new InvalidArgumentException('Object Curl expects a curl_init(). Incorrect argument provided.');
+        }
     }
 
     public function __destruct()
     {
         if(is_resource($this->curlHandle)) {
             curl_close($this->curlHandle);
-        }
-    }
-
-    protected function setOptions(Array $optionList)
-    {
-        foreach($optionList as $optionName => $optionValue) {
-            curl_setopt($this->curlHandle, $optionName, $optionValue);
         }
     }
 }
