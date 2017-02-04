@@ -27,9 +27,12 @@ $result = $Curl->execute();
 ```
 
 Note that this library doesn't yet support the full features of ```curl_*``` functions.
+
 To use all the features, you may use the ```$curlHandle``` to manipulate it before calling ````new Curl($curlHandle, ...```
+
 Calling ```new Curl``` last along with ```$Curl->execute()``` will close the curl resource for you automatically.
-Even when you call ```curl_init``` outside the class just like the code above it will take care of closing it for you.
+
+Even when you call ```curl_init``` outside the class just like the code above the Curl object will take care of closing ```curl_init``` for you.
 
 ##MultiCurl
 
