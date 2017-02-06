@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/CRTX/Curl.svg?branch=master)](https://travis-ci.org/CRTX/Curl)
-[![Coverage Status](https://coveralls.io/repos/github/CRTX/Curl/badge.svg?branch=master)](https://coveralls.io/github/CRTX/Curl?branch=Coveralls)
+[![Coverage Status](https://coveralls.io/repos/github/CRTX/Curl/badge.svg?branch=master)](https://coveralls.io/github/CRTX/Curl?branch=master)
 [![GitHub release](https://img.shields.io/github/release/CRTX/Curl.svg)](https://github.com/CRTX/Curl/releases)
 
 The main purpose of this cURL wrapper is to be able to mock cURL calls in php unit tests.
