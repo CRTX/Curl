@@ -15,7 +15,13 @@ install:
     - chmod +x ~/crowdr
     - sudo mv ~/crowdr /usr/local/bin/crowdr
     - crowdr build
-    - crowdr run curlwrapper
+    - crowdr run php 
+
+before_script:
+      - phpenv config-rm xdebug.ini
 
 script:
-    - crowdr exec curlwrapper phpunit
+    - crowdr exec php phpunit
+
+after_success:
+    - travis_retry crowdr exec php coveralls -v

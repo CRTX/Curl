@@ -5,8 +5,10 @@ crowdr_name_format="%s-%s"
 
 crowdr_config="
 #PHP CLI
-curlwrapper build docker/php
-curlwrapper volume $(pwd):/app
-curlwrapper workdir /app
+php build docker/php
+php volume $(pwd):/app
+php workdir /app
+php env TRAVIS=true
+php env TRAVIS_JOB_ID=${TRAVIS_JOB_ID}
 
 "
