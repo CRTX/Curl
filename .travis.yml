@@ -1,21 +1,20 @@
-language: php
-php:
-    - '7.1'
 sudo: required
+
 services:
     - docker
 
 before_install:
-    - sudo apt update
-    - sudo apt install -y curl
+    - phpenv config-rm xdebug.ini
 
 install:
-    - composer install
-    - curl -s https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr > ~/crowdr
-    - chmod +x ~/crowdr
-    - sudo mv ~/crowdr /usr/local/bin/crowdr
+    - composer install 
+    - sudo wget -O /usr/local/bin/crowdr https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr
+    - sudo chmod +x /usr/local/bin/crowdr
     - crowdr build
-    - crowdr run curlwrapper
+    - crowdr run php
 
 script:
-    - crowdr exec curlwrapper phpunit
+    - crowdr exec php phpunit
+
+after_success:
+    - travis_retry crowdr exec php coveralls -v
