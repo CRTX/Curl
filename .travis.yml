@@ -3,19 +3,15 @@ services:
     - docker
 
 before_install:
-    - sudo apt update
-    - sudo apt install -y curl
+    - phpenv config-rm xdebug.ini
 
 install:
-    - composer install
-    - curl -s https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr > ~/crowdr
+    - composer install 
+    - wget -O ~/crowdr https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr
     - chmod +x ~/crowdr
     - sudo mv ~/crowdr /usr/local/bin/crowdr
     - crowdr build
-    - crowdr run php 
-
-before_script:
-      - phpenv config-rm xdebug.ini
+    - crowdr run php
 
 script:
     - crowdr exec php phpunit
