@@ -1,6 +1,4 @@
 sudo: required
-services:
-    - docker
 
 before_install:
     - phpenv config-rm xdebug.ini
