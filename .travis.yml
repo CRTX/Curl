@@ -8,9 +8,8 @@ before_install:
 
 install:
     - composer install 
-    - wget -O ~/crowdr https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr
-    - chmod +x ~/crowdr
-    - sudo mv ~/crowdr /usr/local/bin/crowdr
+    - sudo wget -O /usr/local/bin/crowdr https://raw.githubusercontent.com/polonskiy/crowdr/master/crowdr
+    - chmod +x /usr/local/bin/crowdr
     - crowdr build
     - crowdr run php
 
