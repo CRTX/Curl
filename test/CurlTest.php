@@ -36,9 +36,13 @@ class CurlTest extends PHPUnit_Framework_TestCase
     
     public function testInvalidCurlHandle()
     {
-        $this->expectException(InvalidArgumentException::class);
-        $Curl = new Curl(null, []);
-        $Curl->execute();
+        try {
+            $Curl = new Curl(null, []);
+            $Curl->execute();
+        } catch (InvalidArgumentException $e) {
+            $throwed = true;
+        }
+        $this->assertTrue($throwed);
     }
 
     protected function getDefaultOptionList()
