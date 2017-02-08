@@ -1,5 +1,15 @@
 {
     "name": "CRTX/Curl",
+    "type": "library",
+    "description": "Object Oriented Curl",
+    "keywords": ["curl", "oop"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Ruiz",
+            "email": "ruiz.d.christian@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "CRTX\\Curl\\": "src/"
